@@ -12,12 +12,23 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 public class TCPConnector {
 
     public static void main(String[] args) {
-        String topic = "test";
+        String topic = getTopic(args);
         ServerSocket tcpSocket = startTCPClient(6789);
         Producer producer = createProducer();
         while (true) {
             eventLoop(producer, tcpSocket, topic);
         }
+    }
+
+    static private String getTopic(String[] args) {
+        String topic;
+        if (args.length > 0) {
+            topic = args[0];
+        } else {
+            System.out.println("No topic set defaulting to 'test'");
+            topic = "test";
+        }
+        return topic;
     }
 
     static private void eventLoop(Producer producer, ServerSocket socket, String topic) {

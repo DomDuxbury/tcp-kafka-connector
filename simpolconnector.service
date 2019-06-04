@@ -3,7 +3,7 @@ Description=Manage Simpol Kafka Connector service
 
 [Service]
 WorkingDirectory=/home/duckzbug/.java_services/workspace
-ExecStart=java -jar /home/duckzbug/.java_services/simpol-tcp-connector.jar
+ExecStart=java -jar /home/duckzbug/.java_services/simpol-tcp-connector.jar simpol
 User=duckzbug
 Restart=on-failure
 RestartSec=10
